@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejemplo</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand">App de Contactos en Flask</a>
+    </nav>
+    <div class="container pt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="card card-body">
+                        <form action="/add_contact" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="Nombre" placeholder="Nombre Completo" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="Telefono" placeholder="Phone" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="Correo" placeholder="Email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="Contraseña" placeholder="Password" class="form-control">
+                            </div>
+                             <div class="form-group">
+                                <input type="password" name="Contraseña2" placeholder=" Re Password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{message}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                        <p class="message">ya estas registrado? <a href="/ingresar">Ingresa</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{url_for('static', filename='js/jquery-3.5.1.min.js')}}"></script><!-- tambien se puede usar (static/js/jquery-3.5.1.min.js) -->
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+</body>
